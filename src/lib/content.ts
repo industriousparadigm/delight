@@ -12,36 +12,36 @@ type ContentGenerator = (ctx: { sats: number }) => ContentItem | Promise<Content
 // --- Static content pools ---
 
 const funFacts: string[] = [
-    "Honey never expires.\nArchaeologists found 3000-year-old\nhoney in Egyptian tombs!",
-    "Octopuses have three hearts\nand blue blood!",
-    "A group of flamingos\nis called a flamboyance!",
-    "Bananas are berries,\nbut strawberries aren't!",
-    "Sharks are older than trees.\nSharks: 400 million years.\nTrees: 350 million years.",
-    "A day on Venus is longer\nthan a year on Venus!",
-    "Cows have best friends and get\nstressed when separated!",
-    "Wombat poop is cube-shaped.\nNo one knows exactly why!",
-    "Sea otters hold hands\nwhile sleeping so they\ndon't drift apart!",
-    "A bolt of lightning is 5x hotter\nthan the surface of the Sun!",
+    "Honey never expires. Archaeologists found 3000-year-old honey in Egyptian tombs!",
+    "Octopuses have three hearts and blue blood!",
+    "A group of flamingos is called a flamboyance!",
+    "Bananas are berries, but strawberries aren't!",
+    "Sharks are older than trees. Sharks: 400 million years. Trees: 350 million.",
+    "A day on Venus is longer than a year on Venus!",
+    "Cows have best friends and get stressed when separated!",
+    "Wombat poop is cube-shaped. No one knows exactly why!",
+    "Sea otters hold hands while sleeping so they don't drift apart!",
+    "A bolt of lightning is 5x hotter than the surface of the Sun!",
 ]
 
 const challenges: string[] = [
-    "Do 10 jumping jacks\nright now! GO!",
-    "Spin around 5 times\nthen try to walk straight!",
-    "Do your best robot dance\nfor 15 seconds!",
-    "Balance on one foot\nfor 30 seconds!",
-    "Make the silliest face\nyou can possibly make!",
-    "Do 5 star jumps\nas fast as you can!",
-    "Try to wiggle your ears.\nCan you do it?",
-    "Hop on one foot\n10 times without stopping!",
-    "Touch your elbows\nbehind your back.\nImpossible? Try it!",
-    "Freeze like a statue\nfor 20 seconds. No moving!",
+    "Do 10 jumping jacks right now! GO!",
+    "Spin around 5 times then try to walk straight!",
+    "Do your best robot dance for 15 seconds!",
+    "Balance on one foot for 30 seconds!",
+    "Make the silliest face you can possibly make!",
+    "Do 5 star jumps as fast as you can!",
+    "Try to wiggle your ears. Can you do it?",
+    "Hop on one foot 10 times without stopping!",
+    "Touch your elbows behind your back. Impossible? Try it!",
+    "Freeze like a statue for 20 seconds. No moving!",
 ]
 
 const phrases: string[] = [
     "Future millionaire loading...",
     "1 sat = 1 sat",
     "Stack sats, stay humble.",
-    "Oscar's sats are growing\nwhile he sleeps!",
+    "Oscar's sats are growing while he sleeps!",
     "Patience is a superpower.",
     "Tick tock, next block!",
     "Every sat counts!",
@@ -51,32 +51,32 @@ const phrases: string[] = [
 ]
 
 const emojiStories: string[][] = [
-    ["🦁", "🎂", "🚀"],
-    ["🐙", "⚡", "🏰"],
-    ["🦊", "🌈", "🍕"],
-    ["🐋", "🎸", "🌙"],
-    ["🦄", "🗺️", "💎"],
-    ["🐉", "📚", "⭐"],
-    ["🦈", "🎪", "🔑"],
-    ["🐧", "🏔️", "🎁"],
-    ["🦜", "🏴‍☠️", "🍦"],
-    ["🐸", "🌊", "👑"],
+    ["a lion", "a cake", "a rocket"],
+    ["an octopus", "lightning", "a castle"],
+    ["a fox", "a rainbow", "pizza"],
+    ["a whale", "a guitar", "the moon"],
+    ["a unicorn", "a map", "a diamond"],
+    ["a dragon", "books", "a star"],
+    ["a shark", "a circus", "a key"],
+    ["a penguin", "a mountain", "a gift"],
+    ["a parrot", "pirates", "ice cream"],
+    ["a frog", "the ocean", "a crown"],
 ]
 
 const tongueTwisters: string[] = [
-    "Red lorry, yellow lorry.\nSay it 5 times fast!",
-    "She sells seashells\nby the seashore.\nFaster!",
-    "How much wood would\na woodchuck chuck?\nGO!",
-    "Unique New York.\nSay it 10 times fast!",
-    "Toy boat. Toy boat.\nToy boat. Toy boat.\nKeep going!",
+    "Red lorry, yellow lorry. Say it 5 times fast!",
+    "She sells seashells by the seashore. Faster!",
+    "How much wood would a woodchuck chuck? GO!",
+    "Unique New York. Say it 10 times fast!",
+    "Toy boat. Toy boat. Toy boat. Toy boat. Keep going!",
 ]
 
 const mathPuzzles: string[] = [
-    "If you have 100 sats\nand get 50 more every day,\nhow many after a week?",
-    "What's 7 x 8?\n(Think before you peek!)",
-    "If 3 cats catch 3 mice\nin 3 minutes, how many cats\ncatch 100 mice in 100 min?",
-    "What comes next?\n2, 4, 8, 16, ...",
-    "You have 21 sats.\nYou double them 3 times.\nHow many now?",
+    "If you have 100 sats and get 50 more every day, how many after a week?",
+    "What's 7 x 8? Think before you peek!",
+    "If 3 cats catch 3 mice in 3 minutes, how many cats catch 100 mice in 100 min?",
+    "What comes next? 2, 4, 8, 16, ...",
+    "You have 21 sats. You double them 3 times. How many now?",
 ]
 
 // --- Helpers ---
@@ -136,7 +136,7 @@ function makeBuyableGenerator(item: BuyableItem): ContentGenerator {
         return {
             index: 0, type: "conversion", emoji: item.emoji,
             title: `You could buy...`,
-            body: `${count} ${item.name} ${item.emoji}\n\n(${formatSats(sats)} sats = €${euros.toFixed(2)})`,
+            body: `${count} ${item.name}!\nYour sats are worth about EUR ${Math.round(euros)}.`,
             total: 0,
         }
     }
@@ -162,7 +162,7 @@ function buildTypeBuckets(): Record<string, ContentGenerator[]> {
 
     // Emoji stories
     buckets["emoji-story"] = emojiStories.map(e =>
-        makeStatic("emoji-story", "📖", "Make up a story!", e.join("  "))
+        makeStatic("emoji-story", "📖", "Make up a story!", e.join(", "))
     )
 
     // Tongue twisters
