@@ -54,13 +54,14 @@ body {
 
 /* card colors by content type */
 .card-balance { background-color: var(--color-sun); }
-.card-joke { background-color: var(--color-coral); color: white; }
 .card-fact { background-color: var(--color-sky); }
 .card-challenge { background-color: var(--color-mint); }
 .card-phrase { background-color: var(--color-grape); color: white; }
 .card-emoji-story { background-color: var(--color-tangerine); }
 .card-conversion { background-color: var(--color-blush); }
 .card-countdown { background-color: var(--color-ocean); }
+.card-twister { background-color: var(--color-coral); color: white; }
+.card-puzzle { background-color: #7986CB; color: white; }
 
 /* slight wobble on hover */
 @keyframes wobble {
@@ -138,4 +139,32 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     border: 2px solid var(--color-ink);
+}
+
+/* funky section titles */
+.section-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 4px;
+    border-bottom: 3px dashed var(--color-ink);
+    opacity: 0.7;
+}
+
+.section-title-icon {
+    font-size: 1.2rem;
+}
+
+.section-title-sub {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 400;
+    opacity: 0.6;
+    margin-left: auto;
 }

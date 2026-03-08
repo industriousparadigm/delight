@@ -13,24 +13,26 @@ type ContentItem = {
 
 const TYPE_LABELS: Record<string, string> = {
     balance: "Balance",
-    joke: "Joke",
     fact: "Fun Fact",
     challenge: "Challenge",
     phrase: "Vibes",
     "emoji-story": "Story Time",
-    conversion: "Sats Math",
+    conversion: "What Can You Buy?",
     countdown: "Countdown",
+    twister: "Tongue Twister",
+    puzzle: "Quick Math",
 }
 
 const CARD_CLASSES: Record<string, string> = {
     balance: "card-balance",
-    joke: "card-joke",
     fact: "card-fact",
     challenge: "card-challenge",
     phrase: "card-phrase",
     "emoji-story": "card-emoji-story",
     conversion: "card-conversion",
     countdown: "card-countdown",
+    twister: "card-twister",
+    puzzle: "card-puzzle",
 }
 
 const DEMO_SATS = 238931
@@ -51,7 +53,7 @@ export default function Home() {
             setCurrent(data)
             setHistory(prev => {
                 const next = [data, ...prev]
-                return next.slice(0, 8)
+                return next.slice(0, 12)
             })
         } catch (err) {
             console.error("Failed to fetch:", err)
@@ -77,6 +79,10 @@ export default function Home() {
         setSecondsLeft(30)
         fetchItem(prev)
     }, [index, fetchItem])
+
+    const showItem = useCallback((item: ContentItem) => {
+        setCurrent(item)
+    }, [])
 
     // Auto-play timer
     useEffect(() => {
@@ -177,11 +183,10 @@ export default function Home() {
 
                 <button
                     onClick={() => setAutoPlay(!autoPlay)}
-                    className={`
+                    className="
                         rounded-full px-6 py-3 border-3 font-bold paper-shadow-sm
                         hover:scale-105 transition-transform cursor-pointer
-                        ${autoPlay ? "bg-coral text-white" : "bg-white"}
-                    `}
+                    "
                     style={{
                         fontFamily: "var(--font-display)",
                         borderColor: "var(--color-ink)",
@@ -209,11 +214,9 @@ export default function Home() {
 
             {/* E-ink Preview */}
             <div className="mb-10">
-                <h3
-                    className="text-sm font-bold uppercase tracking-wider mb-3 opacity-50"
-                    style={{ fontFamily: "var(--font-display)" }}
-                >
-                    E-ink Preview (250×122)
+                <h3 className="section-title mb-3">
+                    <span className="section-title-icon">📺</span> E-ink Preview
+                    <span className="section-title-sub">250×122px</span>
                 </h3>
                 <div
                     className="eink-frame mx-auto p-4"
@@ -234,18 +237,17 @@ export default function Home() {
             {/* History */}
             {history.length > 1 && (
                 <div>
-                    <h3
-                        className="text-sm font-bold uppercase tracking-wider mb-3 opacity-50"
-                        style={{ fontFamily: "var(--font-display)" }}
-                    >
-                        Recent
+                    <h3 className="section-title mb-3">
+                        <span className="section-title-icon">⏪</span> Recent
                     </h3>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                         {history.slice(1).map((item, i) => (
-                            <div
+                            <button
                                 key={`${item.index}-${i}`}
+                                onClick={() => showItem(item)}
                                 className={`
-                                    rounded-xl p-3 paper-shadow-sm card-hover cursor-default
+                                    rounded-xl p-3 paper-shadow-sm card-hover text-left
+                                    cursor-pointer hover:scale-105 transition-transform
                                     ${CARD_CLASSES[item.type] ?? "card-balance"}
                                 `}
                                 style={{ fontSize: 12 }}
@@ -257,7 +259,13 @@ export default function Home() {
                                 >
                                     {item.title || TYPE_LABELS[item.type]}
                                 </div>
-                            </div>
+                                <div
+                                    className="truncate opacity-70 mt-1"
+                                    style={{ fontFamily: "var(--font-mono)", fontSize: 10 }}
+                                >
+                                    {item.body.split("\n")[0]}
+                                </div>
+                            </button>
                         ))}
                     </div>
                 </div>
